@@ -1,7 +1,7 @@
 [routers:children]
 ios
-iosxr
-nxos
+#iosxr
+#nxos
 
 [ios]
 sandbox-iosxe-latest-1.cisco.com

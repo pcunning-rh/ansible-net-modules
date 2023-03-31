@@ -3,12 +3,12 @@
   gather_facts: false
 
   tasks:
-    - name: Gather all network resource and minimal legacy facts [Cisco IOS]
+    - name: Show device certificates
       cisco.ios.ios_command:
         commands: show crypto pki certificates
       register: __ios_crypto
 
-    - name: Write running config to file
+    - name: Write certs info to local file
       ansible.builtin.copy:
         content: "{{ __ios_crypto.stdout | replace('\\n', '\n') }}"
         dest: /tmp/certs

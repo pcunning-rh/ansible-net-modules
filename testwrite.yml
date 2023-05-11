@@ -7,7 +7,4 @@
   - name: Write mem
     cisco.ios.ios_command:
       commands:
-      - command: 'copy running-config bootflash:copied.cfg'
-        prompt: 'Destination filename [copied.cfg]'
-        answer: "\r"
       - command: 'write mem'

@@ -1,23 +1,74 @@
 - name: Configure ACL
   hosts: routers
   gather_facts: false
-  vars_files: acls.cfg
+  #vars_files: acls.cfg
 
   tasks:
-    - name: Use ACL resource module [Cisco IOS]
+    # - name: Use ACL resource module [Cisco IOS]
+    #   cisco.ios.ios_acls:
+    #     state: replaced
+    #     config: "{{ cfg }}"
+    #   when: ansible_network_os == 'cisco.ios.ios'
+
+    # - name: Use ACL resource module [Cisco NX-OS]
+    #   cisco.nxos.nxos_acls:
+    #     state: replaced
+    #     config: "{{ cfg }}"
+    #   when: ansible_network_os == 'cisco.nxos.nxos'
+
+    # - name: Use ACL resource module [Cisco IOS XR]
+    #   cisco.iosxr.iosxr_acls:
+    #     state: replaced
+    #     config: "{{ cfg }}"
+    #   when: ansible_network_os == 'cisco.iosxr.iosxr'
+
+    - name: Apply ACL config to device
       cisco.ios.ios_acls:
-        state: replaced
-        config: "{{ cfg }}"
-      when: ansible_network_os == 'cisco.ios.ios'
-
-    - name: Use ACL resource module [Cisco NX-OS]
-      cisco.nxos.nxos_acls:
-        state: replaced
-        config: "{{ cfg }}"
-      when: ansible_network_os == 'cisco.nxos.nxos'
-
-    - name: Use ACL resource module [Cisco IOS XR]
-      cisco.iosxr.iosxr_acls:
-        state: replaced
-        config: "{{ cfg }}"
-      when: ansible_network_os == 'cisco.iosxr.iosxr'
+        state: "{{ acl_state }}"
+        config:
+          - afi: ipv4
+            acls:
+              - name: 90
+                aces:
+                  - sequence: 10
+                    remarks:
+                      - "Monitoring Tools"
+                    grant: permit
+                    source:
+                      address: 10.56.98.0
+                      wildcard_bits: 0.0.0.127
+                  - sequence: 20
+                    remarks:
+                      - "mRNACenter"
+                    grant: permit
+                    source:
+                      address: 10.195.43.10
+                      wildcard_bits: 0.0.0.0
+                  - sequence: 30
+                    remarks:
+                      - "mRNACenter"
+                    grant: permit
+                    source:
+                      address: 10.233.39.11
+                      wildcard_bits: 0.0.0.0
+                  - sequence: 40
+                    remarks:
+                      - "mRNACenter"
+                    grant: permit
+                    source:
+                      address: 10.233.39.12
+                      wildcard_bits: 0.0.0.0
+                  - sequence: 50
+                    remarks:
+                      - "mRNACenter"
+                    grant: permit
+                    source:
+                      address: 10.233.39.13
+                      wildcard_bits: 0.0.0.0
+                  - sequence: 60
+                    remarks:
+                      - "Bezos MoonBreeze"
+                    grant: permit
+                    source:
+                      address: 10.84.128.128
+                      wildcard_bits: 0.0.0.63

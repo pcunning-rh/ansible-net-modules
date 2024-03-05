@@ -68,12 +68,14 @@
                     grant: permit
                     source:
                       address: 8.8.8.8
+                      wildcard_bits: 0.0.0.0
                     remarks:
                       - "GDNS"
                   - sequence: 20
                     grant: permit
                     source:
                       address: 8.8.4.4
+                      wildcard_bits: 0.0.0.0                      
                     remarks:
                       - "GDNS"
               - name: 90

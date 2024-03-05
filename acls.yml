@@ -21,6 +21,11 @@
     #     state: replaced
     #     config: "{{ cfg }}"
     #   when: ansible_network_os == 'cisco.iosxr.iosxr'
+    - name: Cleanup builtin
+      ansible.builtin.file:
+        path: /usr/share/ansible/collections/ansible_collections/cisco
+        state: absent
+
     - name: Debuggery
       ansible.builtin.shell: ansible-galaxy collection list && ansible --version
       delegate_to: localhost

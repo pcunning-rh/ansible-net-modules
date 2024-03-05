@@ -21,6 +21,11 @@
     #     state: replaced
     #     config: "{{ cfg }}"
     #   when: ansible_network_os == 'cisco.iosxr.iosxr'
+    - name: Debuggery
+      ansible.builtin.shell: ansible-galaxy collection list && ansible --version
+      delegate_to: localhost
+      run_once: true
+      ignore_errors: true
 
     - name: Apply ACL config to device
       cisco.ios.ios_acls:

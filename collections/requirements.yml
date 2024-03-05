@@ -1,12 +1,8 @@
 # https://github.com/nleiva/ee-builds/blob/master/ee-network-image/requirements.yml
 collections:
   - name: community.general
-    version: 6.4.0
   - name: cisco.ios
-    version: 4.4.0
+    version: 6.1.2
   - name: cisco.nxos
-    version: 4.1.0
   - name: cisco.iosxr
-    version: 5.0.0
   - name: ansible.netcommon
-    version: 5.0.0

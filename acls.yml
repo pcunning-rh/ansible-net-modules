@@ -33,6 +33,29 @@
         config:
           - afi: ipv4
             acls:
+              - name: NAT-ACL
+                acl_type: extended
+                aces:
+                - sequence: 10
+                  grant: permit
+                  protocol: ip
+                  source:
+                    address: 192.168.1.0
+                    wildcard_bits: 0.0.0.255
+                  destination:
+                    any: true
+              - name: Test
+                acl_type: extended
+                aces:
+                - sequence: 10
+                  grant: permit
+                  protocol: ip
+                  source:
+                    any: true
+                  destination:
+                    host: 1.1.1.1
+              - name: meraki-fqdn-dns
+                acl_type: extended              
               - name: test123
                 acl_type: "standard"
                 aces:

@@ -26,13 +26,28 @@
       delegate_to: localhost
       run_once: true
       ignore_errors: true
-
+      
     - name: Apply ACL config to device
       cisco.ios.ios_acls:
         state: "{{ acl_state }}"
         config:
           - afi: ipv4
             acls:
+              - name: test123
+                acl_type: "standard"
+                aces:
+                  - sequence: 10
+                    grant: permit
+                    source:
+                      address: 8.8.8.8
+                    remarks:
+                      - "GDNS"
+                  - sequence: 20
+                    grant: permit
+                    source:
+                      address: 8.8.4.4
+                    remarks:
+                      - "GDNS"
               - name: 90
                 aces:
                   - sequence: 10

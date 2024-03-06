@@ -1,0 +1,16 @@
+---
+- name: Configure the banner
+  hosts: all
+  gather_facts: false
+  tasks:
+
+  - name: Get date/time
+    ansible.builtin.setup:
+    delegate_to: localhost
+    run_once: true
+
+  - name: Set the banner
+    cisco.ios.ios_banner:
+      banner: login
+      state: present
+      text: "{{ lookup('ansible.builtin.template', 'banner.j2') }}"

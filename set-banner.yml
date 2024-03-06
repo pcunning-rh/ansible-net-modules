@@ -13,4 +13,4 @@
     cisco.ios.ios_banner:
       banner: login
       state: present
-      text: "{{ lookup('ansible.builtin.template', 'banner.j2') }}"
+      text: "{{ lookup('ansible.builtin.template', './templates/banner.j2') }}"

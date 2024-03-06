@@ -15,9 +15,9 @@
       state: present
       text: "{{ lookup('ansible.builtin.template', './templates/banner.j2') }}"
 
-  - name: Set the banner
-    junipernetworks.junos.junos_banner:
-      banner: login
-      state: present
-      text: "{{ lookup('ansible.builtin.template', './templates/banner.j2') }}"
+  # - name: Set the banner
+  #   junipernetworks.junos.junos_banner:
+  #     banner: login
+  #     state: present
+  #     text: "{{ lookup('ansible.builtin.template', './templates/banner.j2') }}"
 

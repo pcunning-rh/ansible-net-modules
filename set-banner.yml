@@ -14,3 +14,11 @@
       banner: login
       state: present
       text: "{{ lookup('ansible.builtin.template', './templates/banner.j2') }}"
+    when: ansible_network_os = 'cisco.ios.ios'
+
+  - name: Set the banner
+    junipernetworks.junos.junos_banner:
+      banner: login
+      state: present
+      text: "{{ lookup('ansible.builtin.template', './templates/banner.j2') }}"
+    when: ansible_network_os = 'junipernetworks.junos.junos'

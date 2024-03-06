@@ -12,6 +12,9 @@ sandbox-iosxr-1.cisco.com
 [nxos]
 sandbox-nxos-1.cisco.com
 
+[juniper]
+juniper.test.dev ansible_connection=junipernetworks.junos.junos
+
 [routers:vars]
 ansible_connection=ansible.netcommon.network_cli
 

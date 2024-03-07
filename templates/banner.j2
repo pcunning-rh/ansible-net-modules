@@ -1,2 +1,3 @@
 Welcome to {{ inventory_hostname }}
 Created on {{ ansible_date_time.iso8601 }}
+{{ extra_banner_text | default(omit) }}

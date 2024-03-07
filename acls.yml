@@ -67,7 +67,8 @@
                   - sequence: 10
                     grant: permit
                     source:
-                      host: 8.8.8.8
+                      address: 8.8.128.0
+                      wildcard_bits: 0.0.0.63
                     remarks:
                       - "GDNS"
                   - sequence: 20

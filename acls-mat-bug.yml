@@ -42,4 +42,4 @@
         config:
           - afi: ipv4
             acls:
-              - "{{ acl_80 }}"
+              - "{{ acl_50 }}"

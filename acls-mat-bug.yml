@@ -1,0 +1,46 @@
+- name: Configure ACL
+  hosts: routers
+  gather_facts: false
+  # vars_files: acls.cfg
+
+  tasks:
+    # - name: Use ACL resource module [Cisco IOS]
+    #   cisco.ios.ios_acls:
+    #     state: replaced
+    #     config: "{{ cfg }}"
+    #   when: ansible_network_os == 'cisco.ios.ios'
+
+    # - name: Use ACL resource module [Cisco NX-OS]
+    #   cisco.nxos.nxos_acls:
+    #     state: replaced
+    #     config: "{{ cfg }}"
+    #   when: ansible_network_os == 'cisco.nxos.nxos'
+
+    # - name: Use ACL resource module [Cisco IOS XR]
+    #   cisco.iosxr.iosxr_acls:
+    #     state: replaced
+    #     config: "{{ cfg }}"
+    #   when: ansible_network_os == 'cisco.iosxr.iosxr'
+    - name: Cleanup builtin
+      ansible.builtin.file:
+        path: /usr/share/ansible/collections/ansible_collections/cisco
+        state: absent
+
+    - name: Debuggery
+      ansible.builtin.shell: ansible-galaxy collection list && ansible --version
+      delegate_to: localhost
+      run_once: true
+      ignore_errors: true
+
+    - name: Get ACL Config
+      cisco.ios.ios_acls:
+        state: "gathered"
+
+    - name: Apply ACL config to device
+      cisco.ios.ios_acls:
+        state: "{{ acl_state }}"
+        config:
+          - afi: ipv4
+            acls:
+              - "{{ acl_80 }}"
+      tags: never

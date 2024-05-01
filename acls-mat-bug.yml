@@ -1,7 +1,7 @@
 - name: Configure ACL
   hosts: routers
   gather_facts: false
-  # vars_files: acls.cfg
+  vars_files: acls_vars.yml
 
   tasks:
     # - name: Use ACL resource module [Cisco IOS]
@@ -43,4 +43,3 @@
           - afi: ipv4
             acls:
               - "{{ acl_80 }}"
-      tags: never

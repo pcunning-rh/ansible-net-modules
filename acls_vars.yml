@@ -1,0 +1,30 @@
+acl_50:
+  name: 50
+  acl_type: standard
+  aces:
+    - sequence: 10
+      remarks:
+        - ABC
+      grant: permit
+      source:
+        host: 10.10.0.1
+    - sequence: 20
+      remarks:
+        - DEF
+      grant: permit
+      source:
+        host: 10.20.0.2
+    - sequence: 30
+      remarks:
+        - GHI
+      grant: permit
+      source:
+        host: 10.30.0.3
+    - sequence: 40
+      remarks:
+        - Deny All
+      grant: deny
+      source:
+        any: true
+      log:
+        set: true

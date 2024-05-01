@@ -4,23 +4,6 @@
   vars_files: acls_vars.yml
 
   tasks:
-    # - name: Use ACL resource module [Cisco IOS]
-    #   cisco.ios.ios_acls:
-    #     state: replaced
-    #     config: "{{ cfg }}"
-    #   when: ansible_network_os == 'cisco.ios.ios'
-
-    # - name: Use ACL resource module [Cisco NX-OS]
-    #   cisco.nxos.nxos_acls:
-    #     state: replaced
-    #     config: "{{ cfg }}"
-    #   when: ansible_network_os == 'cisco.nxos.nxos'
-
-    # - name: Use ACL resource module [Cisco IOS XR]
-    #   cisco.iosxr.iosxr_acls:
-    #     state: replaced
-    #     config: "{{ cfg }}"
-    #   when: ansible_network_os == 'cisco.iosxr.iosxr'
     - name: Cleanup builtin
       ansible.builtin.file:
         path: /usr/share/ansible/collections/ansible_collections/cisco

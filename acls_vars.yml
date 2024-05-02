@@ -26,3 +26,5 @@ acl_50:
       grant: deny
       source:
         any: true
+      log:
+        set: true
